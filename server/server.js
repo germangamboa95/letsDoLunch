@@ -1,9 +1,18 @@
 var admin = require('firebase-admin');
 
-
-
 var admin = require("firebase-admin");
 
+var express = require('express');
+
+var bodyParser = require('body-parser')
+
+var app = express();
+
+var test = require('./test.js');
+
+console.log(test.lorem());
+
+// Database init
 var serviceAccount = {
   "type": "service_account",
   "project_id": "letsdolunch-4aacb",
@@ -16,8 +25,6 @@ var serviceAccount = {
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-e1h6g%40letsdolunch-4aacb.iam.gserviceaccount.com"
 }
-
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://letsdolunch-4aacb.firebaseio.com"
@@ -27,4 +34,18 @@ var db = admin.database();
 
 db.ref('test').set('test');
 
-console.log(admin);
+
+
+app.get('/', function(req, res) {
+  res.send("Please use the endpoint.");
+});
+
+app.get('/test', function(req, res) {
+  let data = test.lorem();
+  res.send(data);
+
+});
+
+
+app.listen(3000);
+console.log('Server is starting...');
