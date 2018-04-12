@@ -18,13 +18,48 @@
                 <center><p>Lorem Ipsum, Yo</p></center>
                 <center><p>Lorem Ipsum, Yo 2</p></center>
             </div>
+        </div>
+        <div class = "row">
+            <form class = "col s12">
+                <div class = "input_field col s12">
+                    <center><input id="email" type="email" class="validate">
+                    <label for="email">Email</label></center>                
+                </div>
+            </form>
+        </div>
+        <div class = "row">
+            <center><a class='dropdown-trigger btn' href='#' data-target='dropdown1'>How Many People?</a></center>
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!">two</a></li>
+                <li><a href="#!">three</a></li>
+                <li><a href="#!">four</a></li>
+                <li><a href="#!">five</a></li>
+            </ul>
+        </div>
+    
+    
+    
+    
+    </div>
+
+
             
 
 
 
 
   <script src="js/jquery.min.js" charset="utf-8"></script>
+
+  <script>
+  
+  var elem = document.querySelector('.dropdown-trigger');
+  var instance = M.Dropdown.init(elem, options);
+  $('.dropdown-trigger').dropdown();
+  
+  </script>
+  
   <script src="js/materialize.min.js" charset="utf-8"></script>
+
 
 </body>
 </html>
