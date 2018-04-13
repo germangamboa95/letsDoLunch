@@ -13,8 +13,8 @@ document.addEventListener('submit', function(e){
             lat = results[0].geometry.bounds.b.b;
             long = results[0].geometry.bounds.f.b;
             console.log(results);
-            console.log(lat);
+            console.log(lat); adsf
             console.log(long);
         }
     });
-});
+});    
