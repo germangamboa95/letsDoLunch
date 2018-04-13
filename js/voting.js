@@ -1,6 +1,16 @@
 $(document).ready(function(){
-    $('#modal1').modal();
-    $('#modal1').modal('open'); 
+    $('#modal1').modal({
+        dismissible: false
+  })
+    $('#modal1').modal('open')
+
+
+
+
+   
+    
+
+
 
     var sessionId = "L9zRG5gi0H1VCWU42Zz";
     var locationsURL = "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/load_location_data";
@@ -30,11 +40,11 @@ $(document).ready(function(){
             console.log(locations);
             console.log(images);
 
-            for (i=0; i<locations.length; i++){
+            for (var i=0; i<locations.length; i++){
                 console.log(locations[i].place_id);
-                card= $("<div class='card large'>");
+                card= $("<div class='card large' id='card"+i+"'>");
                 cardImageDiv = $("<div class='card-image'>");
-                cardImage= $("<img src='images/restrauntPlaceholder.png'>");
+                cardImage= $("<img src='images/placeHolder.png' class='cardImg'>");
                 cardTitle= $("<span class='card-title'>");
                 titleString= locations[i].name;
                 cardContent= $("<div class='card-content'>");
@@ -43,7 +53,7 @@ $(document).ready(function(){
                 cardAddress= $("<p>"+locations[i].address+"</p>");
                 cardAction= $("<div class='card-action'>")
                 upVote= $("<a class='waves-effect waves-light btn right btn-large green accent-4'id='"+locations[i].place_id+"'>  <i class='material-icons'>thumb_up</i></a>");
-                downVote= $("<a class='waves-effect waves-light btn left btn-large red accent-4'id='"+locations[i].place_id+"'>  <i class='material-icons'>thumb_down</i></a>");
+                downVote= $("<a class='waves-effect waves-light btn left btn-large red accent-4'id='"+locations[i].place_id+"negative'>  <i class='material-icons'>thumb_down</i></a>");
                 var starPercentage = (locations[i].rating/starsTotal) * 100;
                 var starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
                 console.log(starPercentageRounded);
@@ -61,6 +71,15 @@ $(document).ready(function(){
                 $(cardAction).append(downVote);
                 $(".stars-inner").css("width", starPercentageRounded);
 
+                for (var j=0; j<images.length; j++){
+
+                    var image =Object.keys(images[j]);
+                    console.log(image);
+
+                    if (images[j]==locations[i].place_id){
+
+                    }
+                }
 
                 
             }
@@ -70,5 +89,5 @@ $(document).ready(function(){
     })
 
 
- });
+});
 
