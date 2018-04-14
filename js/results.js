@@ -11,73 +11,80 @@ var votes = {
 var restaurantName = ["Restaurant A","Restaurant B","Restaurant C","Restaurant D","Restaurant E"]
 var restaurantVotes = [2,4,5,0,1];
 var setWidth = [];
+var counter
 
-
-
-
-
-
-// for (var i = 0; i < Object.keys(votes).length; i++) {
-//     for (var j = 0; j < locations.length; j++) {
-//         if (Object.keys(votes)[i] === locations[j].place_id) {
-//            restaurantName[i] = locations[j].name;
-//            restaurantVotes[i] = Object.values(votes)[i]);
-//         }
-//     }
-// };
-
-
-for (var k = 0; k < restaurantName.length; k++) {
-    if (k === 0) {
-        document.getElementById("rest-1").innerText = restaurantName[k];
-    } else if (k === 1) {
-        document.getElementById("rest-2").innerText = restaurantName[k];
-    } else if (k === 2) {
-        document.getElementById("rest-3").innerText = restaurantName[k];
-    } else if (k === 3) {
-        document.getElementById("rest-4").innerText = restaurantName[k]; 
-    } else if (k === 4) {
-        document.getElementById("rest-5").innerText = restaurantName[k];
-    }    
+for (var i = 0; i < Object.values(votes).length; i++) {
+    if (Object.values(votes)[i] === 5) {
+        counter++;
+    }
 };
 
-for (var m = 0; m < restaurantVotes.length; m++) {
-    var temp = Math.round(restaurantVotes[m] / Object.values(votes).length *100);
-    console.log("the percent for restaurant " + m + " is " + temp);
-    setWidth[m] = "width: " + temp +"%";
-    console.log(setWidth[m]);
-}
-
-
-
-for (var n = 0; n < restaurantVotes.length; n++) {
-    if (n === 0) {
-        document.getElementById("width-1").setAttribute("style", setWidth[n]);
-    } else if (n === 1) {
-        document.getElementById("width-2").setAttribute("style", setWidth[n]);
-    } else if (n === 2) {
-        document.getElementById("width-3").setAttribute("style", setWidth[n]);
-    } else if (n === 3) {
-        document.getElementById("width-4").setAttribute("style", setWidth[n]); 
-    } else  {
-        document.getElementById("width-5").setAttribute("style", setWidth[n]);
-    }    
+if (counter === 1) {
+    resultsTwo();    
+} else {
+    resultsOne();
 };
 
+function resultsTwo() {
+    for (var i = 0; i , Object.values(votes).length; i++) {
+        if (Object.values(votes)[i] === 5) {
+            var winnerCode = Object.keys(votes)[i];
+            for (j = 0; j < locations.length; j++) {
+                if (locations[j].place_id === winnerCode) {
+                    var winnerName = locations[j].name;
+                    var winnerAddress = locations[j].address;
+                    var winnerRating = locations[j].rating;
+                };
+            };
+        };
+    };
+    document.getElementById("selection").innerText = winnerName;
+    document.getElementById("selection-address").innerText = winnerAddress;
+    document.getElementById("selection-rating").innerText = winnerRating;
+};
 
-
-
-
-
-
-    
-    
-
-
-
-
-
-
+function resultsOne() {
+    for (var i = 0; i < Object.keys(votes).length; i++) {
+        for (var j = 0; j < locations.length; j++) {
+            if (Object.keys(votes)[i] === locations[j].place_id) {
+            restaurantName[i] = locations[j].name;
+            restaurantVotes[i] = Object.values(votes)[i];
+            }
+        }
+    };
+    for (var k = 0; k < restaurantName.length; k++) {
+        if (k === 0) {
+            document.getElementById("rest-1").innerText = restaurantName[k];
+        } else if (k === 1) {
+            document.getElementById("rest-2").innerText = restaurantName[k];
+        } else if (k === 2) {
+            document.getElementById("rest-3").innerText = restaurantName[k];
+        } else if (k === 3) {
+            document.getElementById("rest-4").innerText = restaurantName[k]; 
+        } else if (k === 4) {
+            document.getElementById("rest-5").innerText = restaurantName[k];
+        }    
+    };
+    for (var m = 0; m < restaurantVotes.length; m++) {
+        var temp = Math.round(restaurantVotes[m] / Object.values(votes).length *100);
+        console.log("the percent for restaurant " + m + " is " + temp);
+        setWidth[m] = "width: " + temp +"%";
+        console.log(setWidth[m]);
+    };
+    for (var n = 0; n < restaurantVotes.length; n++) {
+        if (n === 0) {
+            document.getElementById("width-1").setAttribute("style", setWidth[n]);
+        } else if (n === 1) {
+            document.getElementById("width-2").setAttribute("style", setWidth[n]);
+        } else if (n === 2) {
+            document.getElementById("width-3").setAttribute("style", setWidth[n]);
+        } else if (n === 3) {
+            document.getElementById("width-4").setAttribute("style", setWidth[n]); 
+        } else  {
+            document.getElementById("width-5").setAttribute("style", setWidth[n]);
+        };   
+    };
+};
 
 
 
