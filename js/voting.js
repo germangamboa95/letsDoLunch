@@ -3,7 +3,6 @@ $(document).ready(function(){
         dismissible: false
   })
     $('#modal1').modal('open')
-    $("")
 
     var sessionId = "LA-y8Fkh7G-OwiIUft0";
     var locationsURL = "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/load_location_data";
@@ -21,6 +20,8 @@ $(document).ready(function(){
     var ratingOuter;
     var ratingInner;
     var starsTotal=5;
+    var eMail;
+    var finalItem
 
     
     $.ajax({
@@ -63,6 +64,7 @@ $(document).ready(function(){
                 $(cardAction).append(upVote);
                 $(cardAction).append(downVote);
                 $(".stars-inner").css("width", starPercentageRounded);
+                finalItem=locations[0].place_id;
 
                 for (var j=0; j<images.length; j++){
 
@@ -75,8 +77,9 @@ $(document).ready(function(){
                         var cardImageReal=$("<img src='"+ images[j][image] +"' class='cardImg'>");
                         $(cardImage).remove();
                         $(cardImageDiv).append(cardImageReal);
-                        
-                        
+                
+                    }
+                    else{
 
                     }
                     
@@ -101,6 +104,21 @@ $(document).ready(function(){
                }).then(function(response){
                     console.log(response);
                })
+               if (voteId==finalItem){
+
+                var emailURL= "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/email_add";
+                $.ajax({
+                    url:emailURL,
+                    method:"POST",
+                    body:{ email: ""+eMail+"" }
+                }).then(function(response){
+                    console.log(response);
+                    $('#modal2').modal()
+                    $('#modal1').modal('open')
+                
+                })
+
+               }
 
 
             })
@@ -113,6 +131,28 @@ $(document).ready(function(){
                 var card= $(actionSection).parent();
                 $(card).slideUp();
                })
+               if (voteId==finalItem){
+
+                var emailURL= "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/email_add";
+                $.ajax({
+                    url:emailURL,
+                    method:"POST",
+                    body:{ email: ""+eMail+"" }
+                }).then(function(response){
+                    console.log(response);
+                    $('#modal2').modal()
+                    $('#modal2').modal('open')
+                })
+
+               }
+
+            $("#eMailsubmit").on("click", function(){
+                eMail=$("#email").val().trim();
+                console.log(eMail);
+            })
+
+           
+
 
         })
 
