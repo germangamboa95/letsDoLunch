@@ -21,7 +21,10 @@ $(document).ready(function(){
     var ratingInner;
     var starsTotal=5;
     var eMail;
-    var finalItem
+    var finalItem;
+    var succsessCard=$("#successCard")
+
+    $("#successCard").hide();
 
     
     $.ajax({
@@ -49,7 +52,7 @@ $(document).ready(function(){
                 cardAction= $("<div class='card-action'>")
 
                 upVote= $("<a class='waves-effect waves-light btn right btn-large green accent-4'id='"+locations[i].place_id+"'>  <i class='material-icons'>thumb_up</i></a>");
-                downVote= $("<a class='waves-effect waves-light btn left btn-large red accent-4'id='"+locations[i].place_id+"negative'>  <i class='material-icons'>thumb_down</i></a>");
+                downVote= $("<a class='waves-effect waves-light btn left btn-large red accent-4'id='"+locations[i].place_id+"'>  <i class='material-icons'>thumb_down</i></a>");
                 var starPercentage = (locations[i].rating/starsTotal) * 100;
                 var starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
                 console.log(starPercentageRounded);
@@ -107,14 +110,15 @@ $(document).ready(function(){
                if (voteId==finalItem){
 
                 var emailURL= "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/email_add";
+                console.log(eMail);
                 $.ajax({
                     url:emailURL,
                     method:"POST",
-                    body:{ email: ""+eMail+"" }
+                    body:{ email:eMail}
                 }).then(function(response){
                     console.log(response);
-                    $('#modal2').modal()
-                    $('#modal1').modal('open')
+                    $(succsessCard).slideDown();
+
                 
                 })
 
@@ -125,30 +129,39 @@ $(document).ready(function(){
              
             $(".red").on("click",function(){
 
-                console.log(this)
-
                 var actionSection= $(this).parent();
                 var card= $(actionSection).parent();
+                var voteId= $(this).attr("id");
                 $(card).slideUp();
-               })
+             
                if (voteId==finalItem){
-
                 var emailURL= "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/email_add";
+                console.log(eMail);
                 $.ajax({
                     url:emailURL,
                     method:"POST",
-                    body:{ email: ""+eMail+"" }
+                    body:{ email: eMail }
                 }).then(function(response){
-                    console.log(response);
-                    $('#modal2').modal()
-                    $('#modal2').modal('open')
+                   console.log(response);
+                   $(succsessCard).slideDown();
+
+
+                   
+                
                 })
+            
 
                }
+            })
 
             $("#eMailsubmit").on("click", function(){
                 eMail=$("#email").val().trim();
+                console.log(typeof eMail)
                 console.log(eMail);
+            })
+
+            $("closeTab").on("click", function(){
+                Window.console();
             })
 
            
