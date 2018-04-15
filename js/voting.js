@@ -1,8 +1,24 @@
 $(document).ready(function(){
-    $('#modal1').modal({
-        dismissible: false
-  })
-    $('#modal1').modal('open')
+    console.log(window.location.search);
+
+    var initiator=window.location.search;
+
+    console.log (typeof initiator);
+
+    var initBool = initiator.includes("initiator");
+
+    if (initBool){
+
+    }
+
+    else {
+
+        $('#modal1').modal({
+            dismissible: false
+      })
+        $('#modal1').modal('open')
+
+    }
 
     var sessionId = "LA-y8Fkh7G-OwiIUft0";
     var locationsURL = "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/load_location_data";
@@ -87,12 +103,16 @@ $(document).ready(function(){
                     }
 
                 }
+                
 
                 $(cardImageDiv).append(cardTitle);
                 $(cardTitle).append(titleString);
 
 
             }
+        })
+
+    })
 
             $(".green").on("click",function(){
 
@@ -203,15 +223,15 @@ $(document).ready(function(){
             })
 
             $("closeTab").on("click", function(){
-                Window.console();
+                Window.close();
             })
 
 
 
 
-        })
+        
 
-    })
+    
 
 
 });
