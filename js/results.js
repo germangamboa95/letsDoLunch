@@ -1,12 +1,6 @@
 // javascript for results screens
 
-// var votes = {
-//     "ChIJF9XffxBw54gROnM1gBSK2Ic": 2,
-//     "ChIJnxsExjKH3YgRQoYbRHVI1kE": 4,
-//     "ChIJt1g7ljKH3YgRSwjdfuKptlM": 5,
-//     "Johnnyisawesome": 0,
-//     "So am I": 1
-// }
+
 
 
 
@@ -17,15 +11,19 @@ var counter = 0;
 var results;
 var urlQuery = "https://letshavelunchserver.herokuapp.com/api/-LA-y8Fkh7G-OwiIUft0/get_res";
 
+// ajax call to get get data from server/api
 $.ajax( {
     url: urlQuery,
     method: "GET"    
     })    
     .then(function(response) {
-        console.log(response);   
+        console.log(response); 
+        // put information returned from call into variable "results"  
         results = response;
         console.log(results);
-
+        // logic to check if any of the candidate restaurants received five votes
+        // If yes, it will call the function that shows a consensus choice
+        // If there are zero, or two or more, restaurants with five votes, it calls another function that will render info for multiple restaurants as progress bars.
         for (var i = 0; i < Object.values(results.votes).length; i++) {
             if (Object.values(results.votes)[i] === 5) {
                 counter++;
@@ -40,8 +38,10 @@ $.ajax( {
         };
     });
 
-
+// This function is fired when there is one restaurant with 5 votes
 function resultsTwo() { 
+    // this section does a double loop that associates selected restaurant (ie, the one with five votes) with its
+    // name, address, rating and could easily pick up other pieces of information.  It stores that info in variables.  
     for (var i = 0; i < Object.values(results.votes).length; i++) {
         if (Object.values(results.votes)[i] === 5) {
             var winnerCode = Object.keys(results.votes)[i];
@@ -55,20 +55,24 @@ function resultsTwo() {
             };
         };
     };
-
+    // This section loops through the images and identifies the image associated with the selected restaurant
+    // and stores it in a variable
     for (var k = 0; k < Object.keys(results.images); k++) {
         if (Object.keys(results.images)[k] === winnerCode) {
             winnerImage = Object.values(results.images)[k];
         };
     };
- 
+    //  the following statements insert the name, address, rating and image of the selected restaurant into the html.
     document.getElementById("selection").innerText = winnerName;
     document.getElementById("selection-address").innerText = winnerAddress;
     document.getElementById("selection-rating").innerText = winnerRating;
     document.getElementById("selection-image").setAttribute("src", winnerImage);
 };
 
+// This function fires if no restaurant gets 5 votes or if more than one gets five votes.  
 function resultsOne() {
+    // This section does a double loop through the votes object and the locations array and 
+    // associates restaurant names with the numbers of votes each restaurant received
     console.log("inside the resultsOne function");
     console.log(Object.keys(results.votes).length);
     console.log(results.locations.length);
@@ -80,6 +84,8 @@ function resultsOne() {
             };
         };
     };
+    // The following code puts restaurant names into html sections associated with progress bars
+    // that show the votes (as a percentage) for each restaurant
     console.log(restaurantName);
     console.log(restaurantVotes);
     for (var k = 0; k < restaurantName.length; k++) {
@@ -95,12 +101,14 @@ function resultsOne() {
             document.getElementById("rest-5").innerText = restaurantName[k];
         }    
     };
+    // This section computes the percent of votes to show on progress bar
     for (var m = 0; m < restaurantVotes.length; m++) {
         var temp = Math.round(restaurantVotes[m] / Object.values(results.votes).length *100);
         console.log("the percent for restaurant " + m + " is " + temp);
         setWidth[m] = "width: " + temp +"%";
         console.log(setWidth[m]);
     };
+    // This section puts calculated perceentages into progress bars
     for (var n = 0; n < restaurantVotes.length; n++) {
         if (n === 0) {
             document.getElementById("width-1").setAttribute("style", setWidth[n]);
@@ -121,21 +129,8 @@ function resultsOne() {
 
 
 
-// var locations: {
-//     "0": {
-//     "address": "12701 S John Young Pkwy #101, Orlando",
-//     "id": "0146339c9661a9b00e8b460b7ab7f1eaab7b12ec",
-//     "is_open": true,
-//     "name": "Bandeja Paisa Latin Restaurant",
-//     "photos": "CmRaAAAAQ6DsHEKrFsc9K3bsHB6ajLiNw_AHQ3DAErB_ckjTAUeTg7mALm-EIQi0FKe4bd8xDHd0oo-9oZ7kNoH3EmVeyD9RPKiSMj2rxHiAnHsoPEzI57caoP_D3hOBlgjT6QtwEhD3yV2oQXimQt3012CUigBgGhQ6lnV3WIFYQG2aIENJFgDmmGSBUw",
-//     "place_id": "ChIJW1T-ZUqH3YgRL55uMbBRnW8",
-//     "rating": 4,
-//     "types": [
-//     "restaurant",
-//     "food",
-//     "point_of_interest",
-//     "establishment"
-//     ]
+
+
 
 
 
