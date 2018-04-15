@@ -1,57 +1,87 @@
 // javascript for results screens
 
-var votes = {
-    "ChIJF9XffxBw54gROnM1gBSK2Ic": 2,
-    "ChIJnxsExjKH3YgRQoYbRHVI1kE": 4,
-    "ChIJt1g7ljKH3YgRSwjdfuKptlM": 5,
-    "Johnnyisawesome": 0,
-    "So am I": 1
-}
+// var votes = {
+//     "ChIJF9XffxBw54gROnM1gBSK2Ic": 2,
+//     "ChIJnxsExjKH3YgRQoYbRHVI1kE": 4,
+//     "ChIJt1g7ljKH3YgRSwjdfuKptlM": 5,
+//     "Johnnyisawesome": 0,
+//     "So am I": 1
+// }
+
+
 
 var restaurantName = ["Restaurant A","Restaurant B","Restaurant C","Restaurant D","Restaurant E"]
-var restaurantVotes = [2,4,5,0,1];
+var restaurantVotes = [0,0,0,0,0];
 var setWidth = [];
-var counter
+var counter = 0;
+var results;
+var urlQuery = "https://letshavelunchserver.herokuapp.com/api/-LA-y8Fkh7G-OwiIUft0/get_res";
 
-for (var i = 0; i < Object.values(votes).length; i++) {
-    if (Object.values(votes)[i] === 5) {
-        counter++;
-    }
-};
+$.ajax( {
+    url: urlQuery,
+    method: "GET"    
+    })    
+    .then(function(response) {
+        console.log(response);   
+        results = response;
+        console.log(results);
 
-if (counter === 1) {
-    resultsTwo();    
-} else {
-    resultsOne();
-};
+        for (var i = 0; i < Object.values(results.votes).length; i++) {
+            if (Object.values(results.votes)[i] === 5) {
+                counter++;
+            }
+        };
+        if (counter === 1) {
+            resultsTwo();    
+        }
+            else {
+            console.log("at call to resultsOne function");    
+            resultsOne();
+        };
+    });
 
-function resultsTwo() {
-    for (var i = 0; i , Object.values(votes).length; i++) {
-        if (Object.values(votes)[i] === 5) {
-            var winnerCode = Object.keys(votes)[i];
-            for (j = 0; j < locations.length; j++) {
-                if (locations[j].place_id === winnerCode) {
-                    var winnerName = locations[j].name;
-                    var winnerAddress = locations[j].address;
-                    var winnerRating = locations[j].rating;
-                };
+
+function resultsTwo() { 
+    for (var i = 0; i < Object.values(results.votes).length; i++) {
+        if (Object.values(results.votes)[i] === 5) {
+            var winnerCode = Object.keys(results.votes)[i];
+            for (j = 0; j < results.locations.length; j++) {
+                if (results.locations[j].place_id === winnerCode) {
+                    var winnerName = results.locations[j].name;
+                    var winnerAddress = results.locations[j].address;
+                    var winnerRating = results.locations[j].rating;
+                   
+                };                
             };
         };
     };
+
+    for (var k = 0; k < Object.keys(results.images); k++) {
+        if (Object.keys(results.images)[k] === winnerCode) {
+            winnerImage = Object.values(results.images)[k];
+        };
+    };
+ 
     document.getElementById("selection").innerText = winnerName;
     document.getElementById("selection-address").innerText = winnerAddress;
     document.getElementById("selection-rating").innerText = winnerRating;
+    document.getElementById("selection-image").setAttribute("src", winnerImage);
 };
 
 function resultsOne() {
-    for (var i = 0; i < Object.keys(votes).length; i++) {
-        for (var j = 0; j < locations.length; j++) {
-            if (Object.keys(votes)[i] === locations[j].place_id) {
-            restaurantName[i] = locations[j].name;
-            restaurantVotes[i] = Object.values(votes)[i];
-            }
-        }
+    console.log("inside the resultsOne function");
+    console.log(Object.keys(results.votes).length);
+    console.log(results.locations.length);
+    for (var i = 0; i < Object.keys(results.votes).length; i++) {
+        for (var j = 0; j < results.locations.length; j++) {
+            if (Object.keys(results.votes)[i] === results.locations[j].place_id) {
+                restaurantName[i] = results.locations[j].name;
+                restaurantVotes[i] = Object.values(results.votes)[i];
+            };
+        };
     };
+    console.log(restaurantName);
+    console.log(restaurantVotes);
     for (var k = 0; k < restaurantName.length; k++) {
         if (k === 0) {
             document.getElementById("rest-1").innerText = restaurantName[k];
@@ -66,7 +96,7 @@ function resultsOne() {
         }    
     };
     for (var m = 0; m < restaurantVotes.length; m++) {
-        var temp = Math.round(restaurantVotes[m] / Object.values(votes).length *100);
+        var temp = Math.round(restaurantVotes[m] / Object.values(results.votes).length *100);
         console.log("the percent for restaurant " + m + " is " + temp);
         setWidth[m] = "width: " + temp +"%";
         console.log(setWidth[m]);
@@ -85,6 +115,8 @@ function resultsOne() {
         };   
     };
 };
+
+
 
 
 
