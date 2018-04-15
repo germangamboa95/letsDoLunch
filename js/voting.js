@@ -26,7 +26,7 @@ $(document).ready(function(){
 
     $("#successCard").hide();
 
-    
+
     $.ajax({
         url: locationsURL,
         method: "GET"
@@ -80,18 +80,18 @@ $(document).ready(function(){
                         var cardImageReal=$("<img src='"+ images[j][image] +"' class='cardImg'>");
                         $(cardImage).remove();
                         $(cardImageDiv).append(cardImageReal);
-                
+
                     }
                     else{
 
                     }
-                    
+
                 }
 
                 $(cardImageDiv).append(cardTitle);
                 $(cardTitle).append(titleString);
-    
-                
+
+
             }
 
             $(".green").on("click",function(){
@@ -110,46 +110,88 @@ $(document).ready(function(){
                if (voteId==finalItem){
 
                 var emailURL= "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/email_add";
-                console.log(eMail);
-                $.ajax({
-                    url:emailURL,
-                    method:"POST",
-                    body:{ email:eMail}
-                }).then(function(response){
-                    console.log(response);
-                    $(succsessCard).slideDown();
-
-                
+                // console.log(eMail);
+                // let emailObj = {
+                //   email: eMail
+                // }
+                // $.ajax({
+                //     url:emailURL,
+                //     method:"POST",
+                //     data: JSON.stringify(emailObj)
+                // }).then(function(response){
+                //     console.log(response);
+                //     $(succsessCard).slideDown();
+                //
+                //
+                // })
+                let foo = {
+                  email: eMail
+                }
+                fetch(emailURL, {
+                  method: 'post',
+                  headers: {
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json'
+               },
+                  body: JSON.stringify(foo)
                 })
+                .then(res => res.json())
+                .then(data => {
+                  console.log(data);
+                  $(succsessCard).slideDown();
+
+                });
 
                }
 
 
             })
-             
+
             $(".red").on("click",function(){
 
                 var actionSection= $(this).parent();
                 var card= $(actionSection).parent();
                 var voteId= $(this).attr("id");
                 $(card).slideUp();
-             
+
+
                if (voteId==finalItem){
                 var emailURL= "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/email_add";
                 console.log(eMail);
-                $.ajax({
-                    url:emailURL,
-                    method:"POST",
-                    body:{ email: eMail }
-                }).then(function(response){
-                   console.log(response);
-                   $(succsessCard).slideDown();
-
-
-                   
-                
+                // let emailObj = {
+                //   email: eMail
+                // }
+                // $.ajax({
+                //     url:emailURL,
+                //     method:"POST",
+                //     data: JSON.stringify(emailObj)
+                // }).then(function(response){
+                //    console.log(response);
+                //    $(succsessCard).slideDown();
+                //
+                //
+                //
+                //
+                //
+                // })
+                let foo = {
+                  email: eMail
+                }
+                fetch(emailURL, {
+                  method: 'post',
+                  headers: {
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json'
+               },
+                  body: JSON.stringify(foo)
                 })
-            
+                .then(res => res.json())
+                .then(data => {
+                  console.log(data);
+                  $(succsessCard).slideDown();
+
+                });
+
 
                }
             })
@@ -164,7 +206,7 @@ $(document).ready(function(){
                 Window.console();
             })
 
-           
+
 
 
         })
@@ -173,4 +215,3 @@ $(document).ready(function(){
 
 
 });
-
