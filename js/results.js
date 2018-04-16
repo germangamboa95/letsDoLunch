@@ -1,5 +1,9 @@
 // javascript for results screens
 
+let urlParams = window.location.href;
+let url = new URL(urlParams);
+
+var sessionId = url.searchParams.get("session");
 
 
 
@@ -9,16 +13,16 @@ var restaurantVotes = [0,0,0,0,0];
 var setWidth = [];
 var counter = 0;
 var results;
-var urlQuery = "https://letshavelunchserver.herokuapp.com/api/-LA-y8Fkh7G-OwiIUft0/get_res";
+var urlQuery = "https://letshavelunchserver.herokuapp.com/api/"+sessionId+"/get_res";
 
 // ajax call to get get data from server/api
 $.ajax( {
     url: urlQuery,
-    method: "GET"    
-    })    
+    method: "GET"
+    })
     .then(function(response) {
-        console.log(response); 
-        // put information returned from call into variable "results"  
+        console.log(response);
+        // put information returned from call into variable "results"
         results = response;
         console.log(results);
         // logic to check if any of the candidate restaurants received five votes
@@ -30,18 +34,18 @@ $.ajax( {
             }
         };
         if (counter === 1) {
-            resultsTwo();    
+            resultsTwo();
         }
             else {
-            console.log("at call to resultsOne function");    
+            console.log("at call to resultsOne function");
             resultsOne();
         };
     });
 
 // This function is fired when there is one restaurant with 5 votes
-function resultsTwo() { 
+function resultsTwo() {
     // this section does a double loop that associates selected restaurant (ie, the one with five votes) with its
-    // name, address, rating and could easily pick up other pieces of information.  It stores that info in variables.  
+    // name, address, rating and could easily pick up other pieces of information.  It stores that info in variables.
     for (var i = 0; i < Object.values(results.votes).length; i++) {
         if (Object.values(results.votes)[i] === 5) {
             var winnerCode = Object.keys(results.votes)[i];
@@ -50,8 +54,8 @@ function resultsTwo() {
                     var winnerName = results.locations[j].name;
                     var winnerAddress = results.locations[j].address;
                     var winnerRating = results.locations[j].rating;
-                   
-                };                
+
+                };
             };
         };
     };
@@ -69,9 +73,9 @@ function resultsTwo() {
     document.getElementById("selection-image").setAttribute("src", winnerImage);
 };
 
-// This function fires if no restaurant gets 5 votes or if more than one gets five votes.  
+// This function fires if no restaurant gets 5 votes or if more than one gets five votes.
 function resultsOne() {
-    // This section does a double loop through the votes object and the locations array and 
+    // This section does a double loop through the votes object and the locations array and
     // associates restaurant names with the numbers of votes each restaurant received
     console.log("inside the resultsOne function");
     console.log(Object.keys(results.votes).length);
@@ -96,10 +100,10 @@ function resultsOne() {
         } else if (k === 2) {
             document.getElementById("rest-3").innerText = restaurantName[k];
         } else if (k === 3) {
-            document.getElementById("rest-4").innerText = restaurantName[k]; 
+            document.getElementById("rest-4").innerText = restaurantName[k];
         } else if (k === 4) {
             document.getElementById("rest-5").innerText = restaurantName[k];
-        }    
+        }
     };
     // This section computes the percent of votes to show on progress bar
     for (var m = 0; m < restaurantVotes.length; m++) {
@@ -117,20 +121,9 @@ function resultsOne() {
         } else if (n === 2) {
             document.getElementById("width-3").setAttribute("style", setWidth[n]);
         } else if (n === 3) {
-            document.getElementById("width-4").setAttribute("style", setWidth[n]); 
+            document.getElementById("width-4").setAttribute("style", setWidth[n]);
         } else  {
             document.getElementById("width-5").setAttribute("style", setWidth[n]);
-        };   
+        };
     };
 };
-
-
-
-
-
-
-
-
-
-
-
