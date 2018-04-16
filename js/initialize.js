@@ -41,7 +41,7 @@ document.addEventListener('submit', function(e){
             }).then(res => res.json())
             .then(data => {
               console.log(data);
-              initiatorLink = "./Voting2.html?initiator=true&session="+data;
+              initiatorLink = "https://germangamboa95.github.io/letsDoLunch.io/Voting2.html?initiator=true&session="+data;
               guestLink = "./Voting2.html?initiator=false&session="+data;
         
               console.log(guestLink);
@@ -50,8 +50,8 @@ document.addEventListener('submit', function(e){
               $(".startForm").slideUp();
               $(".shareCard").slideDown();
               var a2a_config = a2a_config || {};
-              a2a_config.linkname = "Lets do lunch together!";
-              a2a_config.linkurl = guestLink;
+              $(".a2a_kit").attr("data-a2a-url", guestLink);
+              $(".a2a_kit").attr("data-a2a-title", "Let's do lunch together!");
               $("#voteBtn").attr("href", initiatorLink);
 
             });
