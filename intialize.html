@@ -9,6 +9,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/materialize.min.css">
   <link rel="stylesheet" href="css/initialize.css">
+  <link rel="stylesheet" href="css/style.css">
+
   <title>Let's Do Lunch</title>
   <style>
     .card-center {
@@ -19,27 +21,23 @@
 
 <body>
 
-  <div class="wrapper">
-    <div class="row">
-      <div class="col-sm">
-        <center><img src="images/lunch logo.png" class="image1" alt="Lets Do Lunch"></center>
-      </div>
-      <div class="col-sm">
-        <center>
-          <p>Lorem Ipsum, Yo</p>
-        </center>
-        <center>
-          <p>Lorem Ipsum, Yo 2</p>
-        </center>
-      </div>
+  <nav>
+    <div class="nav-wrapper green accent-4">
+      <a href="#" class="brand-logo center">Let's do lun.ch</a>
     </div>
+  </nav>
+        
+<!--page header-->
+<div class="container">
 
 
+    <div class="row">
+        <div class="col s12 m6 offset-m3" id="resCol">
+            <div class="row section">
+                <h6 class="align center">Welcome to Let's Do Lunch! Choose a location where you want to eat and how many friends are coming with you!</h6>
+              </div>
 
-    <div class=" main-content row">
-      <form class="col s6">
-        <div class="row">
-        </div>
+      <form class="col s12 center">
         <div class="row">
           <div class="input-field col s12">
             <input id="location" type="text" class="validate">
@@ -55,7 +53,7 @@
         <div class="row">
           <div class="col s12">
             <select id="num-guest">
-            <option value="" disabled selected>How many guests?</option>
+            <option value="" disabled selected>How many friends are coming?</option>
             <option value="2">2</option>
             <option value="3"> 3</option>
             <option value="4"> 4</option>
@@ -63,7 +61,7 @@
             </select>
             <label>Materialize Select</label>
 
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <button class="btn waves-effect waves-light green accent-4" type="submit" name="action">Submit
               <i class="material-icons right">send</i>
               </button>
 
@@ -83,6 +81,22 @@
 
   </div>
 
+
+  </div>
+  <footer class="page-footer grey">
+      <div class="container">
+        <div class="row">
+          <div class="col l12 s12 center-align">
+              <a class="grey-text text-lighten-3 " href="about.html">about</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright grey darken-1">
+        <div class="container">
+        © 2018 The Fighting Mongooses
+        </div>
+      </div>
+    </footer>
 
 
 

@@ -21,6 +21,8 @@ This is the MVP version in beta, version 1.0 will include:
 3. Native sharing widgets 
 4. More managment options
 5. Sleeker UI
+6. Ability to add more than 5 people
+
 
 Version 2.0 will include
 1. An ability to search at a location "in the middle" between two users (or more)
