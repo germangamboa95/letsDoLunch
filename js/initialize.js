@@ -41,9 +41,9 @@ document.addEventListener('submit', function(e){
             }).then(res => res.json())
             .then(data => {
               console.log(data);
-              initiatorLink = "https://germangamboa95.github.io/letsDoLunch.io/Voting2.html?initiator=true&session="+data;
+              initiatorLink = "./Voting2.html?initiator=true&session="+data;
               guestLink = "./Voting2.html?initiator=false&session="+data;
-        
+
               console.log(guestLink);
               console.log(initiatorLink);
 
