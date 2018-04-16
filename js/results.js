@@ -2,8 +2,8 @@
 
 let urlParams = window.location.href;
 let url = new URL(urlParams);
-
-var sessionId = url.searchParams.get("session");
+var sessionId = '-LAFaDTTqX7WRhy4KmeD';
+//var sessionId = url.searchParams.get("session");
 //Checks to see if a session key was provided. Sends the user to a 404 page if it was not.
 (sessionId)? null : window.location.replace("/404.html");
 
@@ -24,9 +24,9 @@ $.ajax( {
     })
     .then(function(response) {
         results = response;
-        //The function below gets the total number of votes to help calculate perceentages
-        total_votes = Object.values(results.votes).reduce((acc, cur) => acc + cur);
+
         console.log(response);
+        total_votes = Object.values(results.votes).reduce((acc, cur) => acc + cur);
         // put information returned from call into variable "results"
 
         console.log(results);
@@ -100,18 +100,22 @@ function resultsOne() {
     // that show the votes (as a percentage) for each restaurant
     console.log(restaurantName);
     console.log(restaurantVotes);
+    createRes(restaurantName);
     for (var k = 0; k < restaurantName.length; k++) {
-        if (k === 0) {
-            document.getElementById("rest-1").innerText = restaurantName[k];
-        } else if (k === 1) {
-            document.getElementById("rest-2").innerText = restaurantName[k];
-        } else if (k === 2) {
-            document.getElementById("rest-3").innerText = restaurantName[k];
-        } else if (k === 3) {
-            document.getElementById("rest-4").innerText = restaurantName[k];
-        } else if (k === 4) {
-            document.getElementById("rest-5").innerText = restaurantName[k];
-        }
+        // if (k === 0) {
+        //     document.getElementById("rest-1").innerText = restaurantName[k];
+        // } else if (k === 1) {
+        //     document.getElementById("rest-2").innerText = restaurantName[k];
+        // } else if (k === 2) {
+        //     document.getElementById("rest-3").innerText = restaurantName[k];
+        // } else if (k === 3) {
+        //     document.getElementById("rest-4").innerText = restaurantName[k];
+        // } else if (k === 4) {
+        //     document.getElementById("rest-5").innerText = restaurantName[k];
+        // }
+
+         document.getElementById("rest-"+k).innerText = restaurantName[k];
+
     };
     // This section computes the percent of votes to show on progress bar
     for (var m = 0; m < restaurantVotes.length; m++) {
@@ -122,16 +126,38 @@ function resultsOne() {
     };
     // This section puts calculated perceentages into progress bars
     for (var n = 0; n < restaurantVotes.length; n++) {
-        if (n === 0) {
-            document.getElementById("width-1").setAttribute("style", setWidth[n]);
-        } else if (n === 1) {
-            document.getElementById("width-2").setAttribute("style", setWidth[n]);
-        } else if (n === 2) {
-            document.getElementById("width-3").setAttribute("style", setWidth[n]);
-        } else if (n === 3) {
-            document.getElementById("width-4").setAttribute("style", setWidth[n]);
-        } else  {
-            document.getElementById("width-5").setAttribute("style", setWidth[n]);
-        };
+        // if (n === 0) {
+        //     document.getElementById("width-1").setAttribute("style", setWidth[n]);
+        // } else if (n === 1) {
+        //     document.getElementById("width-2").setAttribute("style", setWidth[n]);
+        // } else if (n === 2) {
+        //     document.getElementById("width-3").setAttribute("style", setWidth[n]);
+        // } else if (n === 3) {
+        //     document.getElementById("width-4").setAttribute("style", setWidth[n]);
+        // } else  {
+        //     document.getElementById("width-5").setAttribute("style", setWidth[n]);
+        // };
+        document.getElementById("width-"+n).setAttribute("style", setWidth[n]);
     };
 };
+
+
+
+
+function createRes(data) {
+  /// Style the res card here!
+  $('#resultsCol').append("<div id='1234' class='card'>");
+  data.forEach((item, index) => {
+    let html =
+    `
+      <div><p><span id="rest-${index}">Restraunt Name:</span><span id="vots"> Number of Votes: ${restaurantVotes[index]}/ ${total_votes}</p></div>
+      <div class="progress green accent-1">
+        <div class="determinate green accent-4" id="width-${index}" style="width: 50%"></div>
+      </div>
+    `;
+    $('#1234').append(html);
+  });
+
+
+
+}

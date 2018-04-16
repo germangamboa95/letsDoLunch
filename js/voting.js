@@ -111,11 +111,12 @@ $(document).ready(function(){
 
                 $(cardImageDiv).append(cardTitle);
                 $(cardTitle).append(titleString);
-                greenInit();
-                redInit();
+
 
 
             }
+            greenInit();
+            redInit();
         })
 
     })
