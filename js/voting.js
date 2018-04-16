@@ -9,7 +9,7 @@ $(document).ready(function(){
     initiator = (initiator === "true");
     var sessionId = url.searchParams.get("session");
 
-    (sessionId)? null : window.location.replace("/404.html");
+    //(sessionId)? null : window.location.replace("/404.html");
 
     //Set the results link href
     $('#results-link').attr('href', 'https://germangamboa95.github.io/letsDoLunch.io/Results1?session='+sessionId);
@@ -21,6 +21,8 @@ $(document).ready(function(){
       })
         $('#modal1').modal('open')
     }
+
+    
 
 
     var locationsURL = "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/load_location_data";
