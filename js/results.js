@@ -150,9 +150,11 @@ function createRes(data) {
   data.forEach((item, index) => {
     let html =
     `
-      <div><p><span id="rest-${index}">Restraunt Name:</span><span id="vots"> Number of Votes: ${restaurantVotes[index]}/ ${total_votes}</p></div>
+    <div class='card-action'>  
+    <div><p><span id="rest-${index}">Restraunt Name:</span><span class='right' id="vots"> ${restaurantVotes[index]}/ ${total_votes}</p></div>
       <div class="progress green accent-1">
         <div class="determinate green accent-4" id="width-${index}" style="width: 50%"></div>
+      </div>
       </div>
     `;
     $('#1234').append(html);
