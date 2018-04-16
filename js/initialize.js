@@ -49,9 +49,9 @@ document.addEventListener('submit', function(e){
               // Display links below
 
 
-              $('.main-content').empty();
+              $('#resCol').empty();
 
-              $('.main-content').append(html)
+              $('#resCol').append(html)
             });
 
         }
