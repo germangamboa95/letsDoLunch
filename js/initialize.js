@@ -40,9 +40,19 @@ document.addEventListener('submit', function(e){
               body: JSON.stringify(data)
             }).then(res => res.json())
             .then(data => {
+              console.log(data);
               initiatorLink = "./Voting2.html?initiator=true&session="+data;
               guestLink = "./Voting2.html?initiator=false&session="+data;
-              addLinks(initiatorLink, guestLink);
+        
+              console.log(guestLink);
+              console.log(initiatorLink);
+
+              $(".startForm").slideUp();
+              $(".shareCard").slideDown();
+              var a2a_config = a2a_config || {};
+              a2a_config.linkname = "Lets do lunch together!";
+              a2a_config.linkurl = guestLink;
+              $("#voteBtn").attr("href", initiatorLink);
 
             });
 
@@ -51,22 +61,3 @@ document.addEventListener('submit', function(e){
 
 
 });
-
-
-function addLinks(initiatorLink, guestLink) {
-  $("#submitButton").on("click", function(){
-
-    console.log(guestLink);
-    console.log(initiatorLink);
-
-    $(".startForm").slideUp();
-    $(".shareCard").slideDown();
-    var a2a_config = a2a_config || {};
-    a2a_config.linkname = "Lets do lunch together!";
-    a2a_config.linkurl = guestLink;
-    $("#voteBtn").attr("href", initiatorLink);
-
-  });
-
-
-}
