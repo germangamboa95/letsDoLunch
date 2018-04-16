@@ -22,11 +22,11 @@ $(document).ready(function(){
         $('#modal1').modal('open')
     }
 
-    
 
 
-    var locationsURL = "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/load_location_data";
-    var imagesURL = "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/load_images";
+
+    var locationsURL = "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/load_location_data";
+    var imagesURL = "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/load_images";
     var card;
     var cardImageDiv;
     var cardImage;
@@ -132,7 +132,7 @@ function greenInit(){
       var actionSection= $(this).parent();
       var card= $(actionSection).parent();
       var voteId= $(this).attr("id");
-      var voteURL= "https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/vote/" + voteId;
+      var voteURL= "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/vote/" + voteId;
       $(card).slideUp();
       $.ajax({
         url:voteURL,
@@ -142,7 +142,7 @@ function greenInit(){
      })
      if (voteId==finalItem){
 
-      var emailURL= "https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/email_add";
+      var emailURL= "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/email_add";
 
       let foo = {
         email: eMail
@@ -178,7 +178,7 @@ function redInit(){
       var voteId= $(this).attr("id");
       $(card).slideUp();
      if (voteId==finalItem){
-      var emailURL= "https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/email_add";
+      var emailURL= "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/email_add";
       console.log(eMail);
       let foo = {
         email: eMail
