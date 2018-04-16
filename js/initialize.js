@@ -1,7 +1,7 @@
 var geocoder = new google.maps.Geocoder();
 console.log(geocoder);
 
-
+$(".shareCard").hide();
 
 
 document.addEventListener('submit', function(e){
@@ -44,6 +44,8 @@ document.addEventListener('submit', function(e){
               <a href="${initiatorLink}">Go Vote</a>
               <a href="${guestLink}">Share Me</a>
 
+
+
                 `
 
               // Display links below
@@ -56,4 +58,22 @@ document.addEventListener('submit', function(e){
 
         }
     });
+
+    
 });
+
+$("#submitButton").on("click", function(){
+
+  $(".startForm").slideUp();
+  setInterval
+  $(".shareCard").slideDown();
+  var a2a_config = a2a_config || {};
+  a2a_config.linkname = "Let's do lunch together!";
+  a2a_config.linkurl = guestLink;
+  $("#voteBtn").attr("href", initiatorLink);
+
+})
+
+
+
+
