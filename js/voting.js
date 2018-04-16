@@ -5,10 +5,13 @@ $(document).ready(function(){
     let urlParams = window.location.href;
     let url = new URL(urlParams);
     let initiator = url.searchParams.get("initiator");
-    // Converting string to bool. 
+    // Converting string to bool.
     initiator = (initiator === "true");
     var sessionId = url.searchParams.get("session");
 
+
+    //Set the results link href
+    $('#results-link').attr('href', 'https://germangamboa95.github.io/letsDoLunch.io/'+sessionId+'/get_res');
 
     if (initiator){}
     else {
