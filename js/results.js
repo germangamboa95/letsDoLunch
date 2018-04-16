@@ -4,7 +4,8 @@ let urlParams = window.location.href;
 let url = new URL(urlParams);
 
 var sessionId = url.searchParams.get("session");
-
+//Checks to see if a session key was provided. Sends the user to a 404 page if it was not.
+(sessionId)? null : window.location.replace("/404.html");
 
 
 
@@ -14,6 +15,7 @@ var setWidth = [];
 var counter = 0;
 var results;
 var urlQuery = "https://letshavelunchserver.herokuapp.com/api/"+sessionId+"/get_res";
+let total_votes;
 
 // ajax call to get get data from server/api
 $.ajax( {
@@ -21,19 +23,25 @@ $.ajax( {
     method: "GET"
     })
     .then(function(response) {
+        results = response;
+        //The function below gets the total number of votes to help calculate perceentages
+        total_votes = Object.values(results.votes).reduce((acc, cur) => acc + cur);
         console.log(response);
         // put information returned from call into variable "results"
-        results = response;
+
         console.log(results);
         // logic to check if any of the candidate restaurants received five votes
         // If yes, it will call the function that shows a consensus choice
         // If there are zero, or two or more, restaurants with five votes, it calls another function that will render info for multiple restaurants as progress bars.
+
+        console.log(total_votes);
         for (var i = 0; i < Object.values(results.votes).length; i++) {
             if (Object.values(results.votes)[i] === 5) {
                 counter++;
             }
         };
-        if (counter === 1) {
+        // Changed to false for testing purposes
+        if (false) {
             resultsTwo();
         }
             else {
@@ -107,7 +115,7 @@ function resultsOne() {
     };
     // This section computes the percent of votes to show on progress bar
     for (var m = 0; m < restaurantVotes.length; m++) {
-        var temp = Math.round(restaurantVotes[m] / Object.values(results.votes).length *100);
+        var temp = Math.round(restaurantVotes[m] / total_votes *100);
         console.log("the percent for restaurant " + m + " is " + temp);
         setWidth[m] = "width: " + temp +"%";
         console.log(setWidth[m]);

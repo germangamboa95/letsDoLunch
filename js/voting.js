@@ -9,9 +9,10 @@ $(document).ready(function(){
     initiator = (initiator === "true");
     var sessionId = url.searchParams.get("session");
 
+    (sessionId)? null : window.location.replace("/404.html");
 
     //Set the results link href
-    $('#results-link').attr('href', 'https://germangamboa95.github.io/letsDoLunch.io/'+sessionId+'/get_res');
+    $('#results-link').attr('href', 'https://germangamboa95.github.io/letsDoLunch.io/Results1?session='+sessionId);
 
     if (initiator){}
     else {
