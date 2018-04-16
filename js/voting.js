@@ -9,7 +9,7 @@ $(document).ready(function(){
     initiator = (initiator === "true");
     var sessionId = url.searchParams.get("session");
 
-    //(sessionId)? null : window.location.replace("/404.html");
+    (sessionId)? null : window.location.replace("/404.html");
 
     //Set the results link href
     $('#results-link').attr('href', 'https://germangamboa95.github.io/letsDoLunch.io/Results1?session='+sessionId);
@@ -95,7 +95,7 @@ $(document).ready(function(){
                     console.log(image);
                     console.log(images[j][image]);
 
-                    if (image==locations[i].place_id){
+                    if (image==locations[i].place_id && image != 'none'){
 
                         var cardImageReal=$("<img src='"+ images[j][image] +"' class='cardImg'>");
                         $(cardImage).remove();
