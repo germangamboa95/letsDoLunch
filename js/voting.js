@@ -1,26 +1,24 @@
 $(document).ready(function(){
-    console.log(window.location.search);
 
-    var initiator=window.location.search;
 
-    console.log (typeof initiator);
+    //Changed the way we grabbed the url to using the new URL object to avoid extra string manipulation
+    let urlParams = window.location.href;
+    let url = new URL(urlParams);
+    let initiator = url.searchParams.get("initiator");
+    // Converting string to bool. 
+    initiator = (initiator === "true");
+    var sessionId = url.searchParams.get("session");
 
-    var initBool = initiator.includes("initiator");
 
-    if (initBool){
-
-    }
-
+    if (initiator){}
     else {
-
         $('#modal1').modal({
             dismissible: false
       })
         $('#modal1').modal('open')
-
     }
 
-    var sessionId = "LA-y8Fkh7G-OwiIUft0";
+
     var locationsURL = "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/load_location_data";
     var imagesURL = "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/load_images";
     var card;
@@ -36,7 +34,7 @@ $(document).ready(function(){
     var ratingOuter;
     var ratingInner;
     var starsTotal=5;
-    var eMail;
+    var eMail = null;
     var finalItem;
     var succsessCard=$("#successCard")
 
@@ -103,10 +101,12 @@ $(document).ready(function(){
                     }
 
                 }
-                
+
 
                 $(cardImageDiv).append(cardTitle);
                 $(cardTitle).append(titleString);
+                greenInit();
+                redInit();
 
 
             }
@@ -114,107 +114,91 @@ $(document).ready(function(){
 
     })
 
-            $(".green").on("click",function(){
-
-                var actionSection= $(this).parent();
-                var card= $(actionSection).parent();
-                var voteId= $(this).attr("id");
-                var voteURL= "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/vote/" + voteId;
-                $(card).slideUp();
-                $.ajax({
-                  url:voteURL,
-                  method:"POST"
-               }).then(function(response){
-                    console.log(response);
-               })
-               if (voteId==finalItem){
-
-                var emailURL= "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/email_add";
-                // console.log(eMail);
-                // let emailObj = {
-                //   email: eMail
-                // }
-                // $.ajax({
-                //     url:emailURL,
-                //     method:"POST",
-                //     data: JSON.stringify(emailObj)
-                // }).then(function(response){
-                //     console.log(response);
-                //     $(succsessCard).slideDown();
-                //
-                //
-                // })
-                let foo = {
-                  email: eMail
-                }
-                fetch(emailURL, {
-                  method: 'post',
-                  headers: {
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-               },
-                  body: JSON.stringify(foo)
-                })
-                .then(res => res.json())
-                .then(data => {
-                  console.log(data);
-                  $(succsessCard).slideDown();
-
-                });
-
-               }
 
 
-            })
+// This function makes sure the event listener is added after the cards are created.
+function greenInit(){
 
-            $(".red").on("click",function(){
-
-                var actionSection= $(this).parent();
-                var card= $(actionSection).parent();
-                var voteId= $(this).attr("id");
-                $(card).slideUp();
+  $(".green").on("click",function(){
 
 
-               if (voteId==finalItem){
-                var emailURL= "https://letshavelunchserver.herokuapp.com/api/-" + sessionId + "/email_add";
-                console.log(eMail);
-                // let emailObj = {
-                //   email: eMail
-                // }
-                // $.ajax({
-                //     url:emailURL,
-                //     method:"POST",
-                //     data: JSON.stringify(emailObj)
-                // }).then(function(response){
-                //    console.log(response);
-                //    $(succsessCard).slideDown();
-                //
-                //
-                //
-                //
-                //
-                // })
-                let foo = {
-                  email: eMail
-                }
-                fetch(emailURL, {
-                  method: 'post',
-                  headers: {
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-               },
-                  body: JSON.stringify(foo)
-                })
-                .then(res => res.json())
-                .then(data => {
-                  console.log(data);
-                  $(succsessCard).slideDown();
 
-                });
+      var actionSection= $(this).parent();
+      var card= $(actionSection).parent();
+      var voteId= $(this).attr("id");
+      var voteURL= "https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/vote/" + voteId;
+      $(card).slideUp();
+      $.ajax({
+        url:voteURL,
+        method:"POST"
+     }).then(function(response){
+          console.log(response);
+     })
+     if (voteId==finalItem){
+
+      var emailURL= "https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/email_add";
+
+      let foo = {
+        email: eMail
+      }
+      fetch(emailURL, {
+        method: 'post',
+        headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json'
+     },
+        body: JSON.stringify(foo)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        $(succsessCard).slideDown();
+
+      });
+     }
+  });
 
 
-               }
-            })
+
+
+}
+
+
+function redInit(){
+
+  $(".red").on("click",function(){
+      var actionSection= $(this).parent();
+      var card= $(actionSection).parent();
+      var voteId= $(this).attr("id");
+      $(card).slideUp();
+     if (voteId==finalItem){
+      var emailURL= "https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/email_add";
+      console.log(eMail);
+      let foo = {
+        email: eMail
+      }
+      fetch(emailURL, {
+        method: 'post',
+        headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json'
+     },
+        body: JSON.stringify(foo)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        $(succsessCard).slideDown();
+
+      });
+
+     }
+  })
+
+
+
+}
+
 
             $("#eMailsubmit").on("click", function(){
                 eMail=$("#email").val().trim();
@@ -229,9 +213,9 @@ $(document).ready(function(){
 
 
 
-        
 
-    
+
+
 
 
 });
