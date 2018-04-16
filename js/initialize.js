@@ -3,6 +3,9 @@ console.log(geocoder);
 
 $(".shareCard").hide();
 
+let initiatorLink;
+let guestLink;
+
 
 document.addEventListener('submit', function(e){
     e.preventDefault();
@@ -37,23 +40,9 @@ document.addEventListener('submit', function(e){
               body: JSON.stringify(data)
             }).then(res => res.json())
             .then(data => {
-              let initiatorLink = "./Voting2.html?initiator=true&session="+data;
-              let guestLink = "./Voting2.html?initiator=false&session="+data;
+              initiatorLink = "./Voting2.html?initiator=true&session="+data;
+              guestLink = "./Voting2.html?initiator=false&session="+data;
 
-              let html = `
-              <a href="${initiatorLink}">Go Vote</a>
-              <a href="${guestLink}">Share Me</a>
-
-
-
-                `
-
-              // Display links below
-
-
-              $('.main-content').empty();
-
-              $('.main-content').append(html)
             });
 
         }
@@ -64,11 +53,14 @@ document.addEventListener('submit', function(e){
 
 $("#submitButton").on("click", function(){
 
+  console.log(guestLink);
+  console.log(initiatorLink);
+
   $(".startForm").slideUp();
   setInterval
   $(".shareCard").slideDown();
   var a2a_config = a2a_config || {};
-  a2a_config.linkname = "Let's do lunch together!";
+  a2a_config.linkname = "Lets do lunch together!";
   a2a_config.linkurl = guestLink;
   $("#voteBtn").attr("href", initiatorLink);
 
