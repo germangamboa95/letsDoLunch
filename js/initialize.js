@@ -9,6 +9,10 @@ let err = (err) => {
   console.log(err);
 }
 
+
+
+
+getCoordsFromNav()
 document.addEventListener('submit', function(e){
     e.preventDefault();
 
