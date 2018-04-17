@@ -140,7 +140,10 @@ function resultsOne() {
     };
     // This section computes the percent of votes to show on progress bar
     for (var m = 0; m < restaurantVotes.length; m++) {
-        var temp = Math.round(restaurantVotes[m] / total_votes *100);
+        console.log(results.guest_qty);
+        var numVoters = results.guest_qty;
+        numVoters = parseInt(numVoters);
+        var temp = Math.round(restaurantVotes[m] / numVoters *100);
         console.log("the percent for restaurant " + m + " is " + temp);
         setWidth[m] = "width: " + temp +"%";
         console.log(setWidth[m]);
@@ -173,7 +176,7 @@ function createRes(data) {
     let html =
     `
     <div class='card-action'>
-    <div><p><span id="rest-${index}">Restraunt Name:</span><span class='right' id="vots"> ${restaurantVotes[index]}/ ${total_votes}</p></div>
+    <div><p><span id="rest-${index}">Restraunt Name:</span><span class='right' id="vots"> ${restaurantVotes[index]}/ ${numVoters}</p></div>
       <div class="progress green accent-1">
         <div class="determinate green accent-4" id="width-${index}" style="width: 50%"></div>
       </div>
