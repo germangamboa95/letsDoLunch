@@ -16,6 +16,7 @@ var counter = 0;
 var results;
 var urlQuery = "https://letshavelunchserver.herokuapp.com/api/"+sessionId+"/get_res";
 let total_votes;
+let winner;
 
 // ajax call to get get data from server/api
 $.ajax( {
@@ -23,11 +24,16 @@ $.ajax( {
     method: "GET"
     })
     .then(function(response) {
+        //  Put information returned from call into variable "results"
         results = response;
 
+        winner = results.winner;
+        console.log("winner: ", winner);
+
         console.log(response);
+        //  Tally up total votes.
         total_votes = Object.values(results.votes).reduce((acc, cur) => acc + cur);
-        // put information returned from call into variable "results"
+
 
         console.log(results);
         // logic to check if any of the candidate restaurants received five votes
@@ -101,6 +107,7 @@ function resultsOne() {
     console.log(restaurantName);
     console.log(restaurantVotes);
     createRes(restaurantName);
+    topRes();
     for (var k = 0; k < restaurantName.length; k++) {
         // if (k === 0) {
         //     document.getElementById("rest-1").innerText = restaurantName[k];
@@ -158,6 +165,28 @@ function createRes(data) {
     $('#1234').append(html);
   });
 
+}
 
+function topRes(){
+  let params = encodeURI(winner.address);
+  let img = results.images[winner.place_id];
+  html =
+  `
+  <div class="card medium mb-2">
+    <div class="card-image">
+      <img src="${img}">
+      <span class="card-title">Top choice: <span id="locName">${winner.name}</span></span>
+      </div>
+      <div class="card-content">
+        <p>
+          ${winner.address}
+        </p>
+        <div class="card-action">
+          <a class="waves-effect waves-light btn right btn-large green accent-4" href="https://www.google.com/maps/search/?api=1&query=${params}&query_place_id=${winner.place_id}">Go There!</a>
+        </div>
+    </div>
+  </div>
+  `;
 
+  $('#resultsCol').prepend(html);
 }
