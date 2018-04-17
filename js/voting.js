@@ -43,6 +43,7 @@ $(document).ready(function(){
     var eMail = null;
     var finalItem;
     var succsessCard=$("#successCard")
+    var l;
 
     $("#successCard").hide();
 
@@ -60,7 +61,7 @@ $(document).ready(function(){
 
             for (var i=0; i<locations.length; i++){
                 console.log(locations[i].place_id);
-                card= $("<div class='card large' id='card"+i+"'>");
+                card= $("<div class='option card large' id='cardo"+i+"'>");
                 cardImageDiv = $("<div class='card-image'>");
                 cardImage= $("<img src='images/placeHolder.png' class='cardImg'>");
                 cardTitle= $("<span class='card-title'>");
@@ -70,7 +71,6 @@ $(document).ready(function(){
                 ratingInner= $("<div class='stars-inner'>");
                 cardAddress= $("<p>"+locations[i].address+"</p>");
                 cardAction= $("<div class='card-action'>")
-
                 upVote= $("<a class='waves-effect waves-light btn right btn-large green voteBtn accent-4'id='"+locations[i].place_id+"'>  <i class='voteIcon material-icons'>thumb_up</i></a>");
                 downVote= $("<a class='waves-effect waves-light btn left btn-large red voteBtn accent-4'id='"+locations[i].place_id+"'>  <i class='voteIcon material-icons'>thumb_down</i></a>");
                 var starPercentage = (locations[i].rating/starsTotal) * 100;
@@ -88,6 +88,9 @@ $(document).ready(function(){
                 $(cardAction).append(downVote);
                 $(".stars-inner").css("width", starPercentageRounded);
                 finalItem=locations[0].place_id;
+                
+
+                
 
                 for (var j=0; j<images.length; j++){
 
@@ -109,16 +112,23 @@ $(document).ready(function(){
                 }
 
 
-                $(cardImageDiv).append(cardTitle);
-                $(cardTitle).append(titleString);
-
-
 
             }
+            l=locations.length-1;
+
+            $(cardImageDiv).append(cardTitle);
+            $(cardTitle).append(titleString);
+            console.log(l);
+            firstCard=("#cardo"+l);
+            console.log(firstCard);
+            $(".option").hide();
+            $(firstCard).slideDown();
             greenInit();
             redInit();
-        })
 
+    
+        })
+       
     })
 
 
@@ -127,14 +137,22 @@ $(document).ready(function(){
 function greenInit(){
 
   $(".green").on("click",function(){
-
-
-
+          
       var actionSection= $(this).parent();
       var card= $(actionSection).parent();
       var voteId= $(this).attr("id");
       var voteURL= "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/vote/" + voteId;
+      var cardId= $(card).attr("id");
+      cardId= cardId.split("o");
+      cardId= cardId[1];
+      cardId=parseInt(cardId);
+      nextCard=cardId-1
+      nextCardId=("#cardo"+nextCard);
+      console.log(cardId);
       $(card).slideUp();
+      $(nextCardId).slideDown();
+
+      
       $.ajax({
         url:voteURL,
         method:"POST"
@@ -177,6 +195,15 @@ function redInit(){
       var actionSection= $(this).parent();
       var card= $(actionSection).parent();
       var voteId= $(this).attr("id");
+      var cardId= $(card).attr("id");
+      cardId= cardId.split("o");
+      cardId= cardId[1];
+      cardId=parseInt(cardId);
+      nextCard=cardId-1
+      nextCardId=("#cardo"+nextCard);
+      console.log(cardId);
+      $(card).slideUp();
+      $(nextCardId).slideDown();
       $(card).slideUp();
      if (voteId==finalItem){
       var emailURL= "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" + sessionId + "/email_add";
