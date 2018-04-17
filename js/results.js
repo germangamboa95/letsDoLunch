@@ -108,19 +108,13 @@ function resultsOne() {
     console.log(restaurantVotes);
     createRes(restaurantName);
 
-    let arr = results.votes;
-    let values = Object.values(arr);
-    let top  = Math.max(...values);
-    let key = getKeyByValue(arr, top)
+
+    //  Logic to display the current top or display the winner
+    let key = getKeyByValue(Object.values(results.votes), Math.max(...Object.values(results.votes)))
     let currentTop = results.locations.reduce((acc, cur) => {
       if(cur.place_id == key){ acc = cur }
       return acc;
     }, {});
-
-
-
-
-
 
     data = (results.winner)? results.winner: currentTop;
 
