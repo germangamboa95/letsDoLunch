@@ -64,6 +64,7 @@ document.addEventListener('submit', function(e) {
 
       console.log(data)
       fetch('https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/session_start', {
+
           method: 'post',
           headers: {
             'Accept': 'application/json',
