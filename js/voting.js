@@ -71,8 +71,8 @@ $(document).ready(function(){
                 cardAddress= $("<p>"+locations[i].address+"</p>");
                 cardAction= $("<div class='card-action'>")
 
-                upVote= $("<a class='waves-effect waves-light btn right btn-large green voteBtn accent-4'id='"+locations[i].place_id+"'>  <i class='material-icons'>thumb_up</i></a>");
-                downVote= $("<a class='waves-effect waves-light btn left btn-large red voteBtn accent-4'id='"+locations[i].place_id+"'>  <i class='material-icons'>thumb_down</i></a>");
+                upVote= $("<a class='waves-effect waves-light btn right btn-large green voteBtn accent-4'id='"+locations[i].place_id+"'>  <i class='voteIcon material-icons'>thumb_up</i></a>");
+                downVote= $("<a class='waves-effect waves-light btn left btn-large red voteBtn accent-4'id='"+locations[i].place_id+"'>  <i class='voteIcon material-icons'>thumb_down</i></a>");
                 var starPercentage = (locations[i].rating/starsTotal) * 100;
                 var starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
                 console.log(starPercentageRounded);
