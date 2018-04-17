@@ -60,7 +60,7 @@ $(document).ready(function(){
 
             for (var i=0; i<locations.length; i++){
                 console.log(locations[i].place_id);
-                card= $("<div class='card medium' id='card"+i+"'>");
+                card= $("<div class='card large' id='card"+i+"'>");
                 cardImageDiv = $("<div class='card-image'>");
                 cardImage= $("<img src='images/placeHolder.png' class='cardImg'>");
                 cardTitle= $("<span class='card-title'>");
@@ -97,7 +97,7 @@ $(document).ready(function(){
 
                     if (image==locations[i].place_id && image != 'none'){
 
-                        var cardImageReal=$("<img src='"+ images[j][image] +"' class='cardImg'>");
+                        var cardImageReal=$("<img src='"+ images[j][image] +"' class='cardImg' style=max-height:300px>");
                         $(cardImage).remove();
                         $(cardImageDiv).append(cardImageReal);
 
