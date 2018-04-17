@@ -27,7 +27,7 @@ $.ajax( {
         //  Put information returned from call into variable "results"
         results = response;
 
-        winner = results.winner;
+
         console.log("winner: ", winner);
 
         console.log(response);
@@ -107,7 +107,25 @@ function resultsOne() {
     console.log(restaurantName);
     console.log(restaurantVotes);
     createRes(restaurantName);
-    topRes();
+
+    let arr = results.votes;
+    let values = Object.values(arr);
+    let top  = Math.max(...values);
+    let key = getKeyByValue(arr, top)
+    let currentTop = results.locations.reduce((acc, cur) => {
+      if(cur.place_id == key){ acc = cur }
+      return acc;
+    }, {});
+
+
+
+
+
+
+    data = (results.winner)? results.winner: currentTop;
+
+
+    topRes(data);
     for (var k = 0; k < restaurantName.length; k++) {
         // if (k === 0) {
         //     document.getElementById("rest-1").innerText = restaurantName[k];
@@ -157,7 +175,7 @@ function createRes(data) {
   data.forEach((item, index) => {
     let html =
     `
-    <div class='card-action'>  
+    <div class='card-action'>
     <div><p><span id="rest-${index}">Restraunt Name:</span><span class='right' id="vots"> ${restaurantVotes[index]}/ ${total_votes}</p></div>
       <div class="progress green accent-1">
         <div class="determinate green accent-4" id="width-${index}" style="width: 50%"></div>
@@ -169,26 +187,30 @@ function createRes(data) {
 
 }
 
-function topRes(){
-  let params = encodeURI(winner.address);
-  let img = results.images[winner.place_id];
+function topRes(data){
+  let params = encodeURI(data.address);
+  let img = results.images[data.place_id];
   html =
   `
   <div class="card medium mb-2">
     <div class="card-image">
       <img src="${img}">
-      <span class="card-title">Top choice: <span id="locName">${winner.name}</span></span>
+      <span class="card-title">Top choice: <span id="locName">${data.name}</span></span>
       </div>
       <div class="card-content">
         <p>
-          ${winner.address}
+          ${data.address}
         </p>
         <div class="card-action">
-          <a class="waves-effect waves-light btn right btn-large green accent-4" href="https://www.google.com/maps/search/?api=1&query=${params}&query_place_id=${winner.place_id}">Go There!</a>
+          <a class="waves-effect waves-light btn right btn-large green accent-4" href="https://www.google.com/maps/search/?api=1&query=${params}&query_place_id=${data.place_id}">Go There!</a>
         </div>
     </div>
   </div>
   `;
 
   $('#resultsCol').prepend(html);
+}
+
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
 }
