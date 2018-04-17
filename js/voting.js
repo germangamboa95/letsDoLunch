@@ -97,7 +97,7 @@ $(document).ready(function(){
 
                     if (image==locations[i].place_id && image != 'none'){
 
-                        var cardImageReal=$("<img src='"+ images[j][image] +"' class='cardImg'>");
+                        var cardImageReal=$("<img src='"+ images[j][image] +"' class='cardImg' style=max-height:300px>");
                         $(cardImage).remove();
                         $(cardImageDiv).append(cardImageReal);
 
