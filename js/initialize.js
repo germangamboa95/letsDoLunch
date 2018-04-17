@@ -5,7 +5,12 @@ $(".shareCard").hide();
 
 let initiatorLink;
 let guestLink;
-
+let err = (err) => {
+  console.log(err);
+}
+navigator.geolocation.getCurrentPosition(function(position) {
+ console.log(positon);
+} ,err,{timeout:60000});
 
 document.addEventListener('submit', function(e){
     e.preventDefault();

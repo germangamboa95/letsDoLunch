@@ -2,15 +2,15 @@
 
 let urlParams = window.location.href;
 let url = new URL(urlParams);
-var sessionId = '-LAFaDTTqX7WRhy4KmeD';
-//var sessionId = url.searchParams.get("session");
+//var sessionId = '-LAFaDTTqX7WRhy4KmeD';
+var sessionId = url.searchParams.get("session");
 //Checks to see if a session key was provided. Sends the user to a 404 page if it was not.
 (sessionId)? null : window.location.replace("/404.html");
 
 
 
-var restaurantName = ["Restaurant A","Restaurant B","Restaurant C","Restaurant D","Restaurant E"]
-var restaurantVotes = [0,0,0,0,0];
+var restaurantName = [];
+var restaurantVotes = [];
 var setWidth = [];
 var counter = 0;
 var results;
@@ -108,15 +108,17 @@ function resultsOne() {
     console.log(restaurantVotes);
     createRes(restaurantName);
 
-
+    let x = Object.values(results.votes);
     //  Logic to display the current top or display the winner
-    let key = getKeyByValue(Object.values(results.votes), Math.max(...Object.values(results.votes)))
+    let key = getKeyByValue(results.votes, Math.max(...Object.values(results.votes)))
     let currentTop = results.locations.reduce((acc, cur) => {
       if(cur.place_id == key){ acc = cur }
       return acc;
     }, {});
 
-    data = (results.winner)? results.winner: currentTop;
+    console.log(x);
+
+    data = (results.winner != undefined)? results.winner: currentTop;
 
 
     topRes(data);
@@ -143,8 +145,9 @@ function resultsOne() {
         setWidth[m] = "width: " + temp +"%";
         console.log(setWidth[m]);
     };
+    console.log(setWidth);
     // This section puts calculated perceentages into progress bars
-    for (var n = 0; n < restaurantVotes.length; n++) {
+    for (var n = 0; n < restaurantVotes.length  ; n++) {
         // if (n === 0) {
         //     document.getElementById("width-1").setAttribute("style", setWidth[n]);
         // } else if (n === 1) {
