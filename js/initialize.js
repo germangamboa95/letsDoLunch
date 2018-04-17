@@ -9,7 +9,7 @@ let err = (err) => {
   console.log(err);
 }
 navigator.geolocation.getCurrentPosition(function(position) {
- console.log(positon);
+ console.log(position);
 } ,err,{timeout:60000});
 
 document.addEventListener('submit', function(e){
