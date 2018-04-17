@@ -12,7 +12,7 @@ $(document).ready(function(){
     (sessionId)? null : window.location.replace("/404.html");
 
     //Set the results link href
-    $('#results-link').attr('href', 'https://germangamboa95.github.io/letsDoLunch.io/Results1?session='+sessionId);
+    $('#results-link').attr('href', './Results1.html?session='+sessionId);
 
     if (initiator){}
     else {
