@@ -7,8 +7,9 @@
     height: 80px;
 }
 
-.voteBtnText{
+.voteIcon{
     vertical-align: middle;
+    margin: 13px 0px;
 }
 
 body{
@@ -16,9 +17,11 @@ body{
 }
 
 footer{
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
+    overflow: hidden;
+
 }
 
 a{
