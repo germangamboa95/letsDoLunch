@@ -16,7 +16,7 @@ Once you all agree on a place you al get an email to see the results
 
 This is the MVP version in beta, version 1.0 will include:
 
-1. Tinder lke swiping unterface for voting
+1. Tinder like swiping interface for voting
 2. Better bug handeling
 3. Native sharing widgets 
 4. More managment options
