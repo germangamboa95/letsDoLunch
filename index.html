@@ -27,41 +27,59 @@
     </div>
   </nav>
 
-<!--page header-->
-<div class="container">
+  <!--page header-->
+  <div class="container">
 
 
     <div class="row startForm">
-        <div class="col s12 m6 offset-m3" id="resCol">
-            <div class="row section">
-                <h6 class="align center">Welcome to Let's Do Lunch! Choose a location where you want to eat and how many friends are coming with you!</h6>
-              </div>
+      <div class="col s12 m6 offset-m3" id="resCol">
+        <div class="row section">
+          <h6 class="align center">Welcome to Let's Do Lunch! Choose a location where you want to eat and how many friends are coming with you!</h6>
+        </div>
 
-      <form class="col s12 center">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="location" type="text" class="validate">
-            <label for="location">What area would you like to have lunch in?</label>
+        <form class="col s12 center">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="location" type="text" class="validate">
+              <label for="location">What area would you like to have lunch in?</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
+
+
+          <div class="input-field inline">
+            <input id="longitude" type="number" class="validate">
+            <label for="longitude">Loading...</label>
+            <span class="helper-text" data-error="wrong" data-success="right">longitude</span>
           </div>
-        </div>
-        <div class="row">
-          <div class="col s12">
-            <select id="num-guest">
+
+
+          <div class="input-field inline">
+            <input id="latitude" type="number" class="validate">
+            <label for="latitude">Loading...</label>
+            <span class="helper-text" data-error="wrong" data-success="right">latitude</span>
+          </div>
+
+
+
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <select id="num-guest">
             <option value="" disabled selected>How many friends are coming?</option>
             <option value="2">2</option>
             <option value="3"> 3</option>
             <option value="4"> 4</option>
             <option value="5"> 5</option>
             </select>
-            <label>Materialize Select</label>
+              <label>Materialize Select</label>
 
-            <button class="btn waves-effect waves-light green accent-4" id="submitButton" type="submit" name="action">Submit
+              <button class="btn waves-effect waves-light green accent-4" id="submitButton" type="submit" name="action">Submit
               <i class="material-icons right">send</i>
               </button>
 
@@ -72,60 +90,60 @@
 
 
 
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+
+      </div>
+
 
     </div>
-
-
-  </div>
-  <div class="row">
+    <div class="row">
       <div class="col s12 m6 offset-m3">
-    <div class="card shareCard center section">
-      <div class="card-title section">
-        <h4>Invite your friends to vote!</h4>
-      </div>
-      <div class="row">
-      <div class="card-content section center-align col m12 offset-m2 offset-s1">
+        <div class="card shareCard center section">
+          <div class="card-title section">
+            <h4>Invite your friends to vote!</h4>
+          </div>
+          <div class="row">
+            <div class="card-content section center-align col m12 offset-m2 offset-s1">
 
-          <div class="a2a_kit a2a_kit_size_32 a2a_default_style center" data-a2a-url="http://www.example.com/page.html" data-a2a-title="Example Page">
-              <a class="a2a_button_email"></a>
-              <a class="a2a_button_whatsapp"></a>
-              <a class="a2a_button_sms"></a>
-              <a class="a2a_button_facebook_messenger"></a>
-              <a class="a2a_button_copy_link"></a>
-              <a class="a2a_button_telegram"></a>
-              <a class="a2a_button_skype"></a>
-            </div>
+              <div class="a2a_kit a2a_kit_size_32 a2a_default_style center" data-a2a-url="http://www.example.com/page.html" data-a2a-title="Example Page">
+                <a class="a2a_button_email"></a>
+                <a class="a2a_button_whatsapp"></a>
+                <a class="a2a_button_sms"></a>
+                <a class="a2a_button_facebook_messenger"></a>
+                <a class="a2a_button_copy_link"></a>
+                <a class="a2a_button_telegram"></a>
+                <a class="a2a_button_skype"></a>
+              </div>
             </div>
           </div>
-            <div class="card-action">
+          <div class="card-action">
 
-                <button  class="btn waves-effect waves-light green accent-4" type="submit" name="action"><a id="voteBtn" href="">Go Vote Yourself!</a></button>
-                </div>
+            <button class="btn waves-effect waves-light green accent-4" type="submit" name="action"><a id="voteBtn" href="">Go Vote Yourself!</a></button>
+          </div>
 
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
   </div>
   <footer class="page-footer grey">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12 center-align">
+          <a class="grey-text text-lighten-3 " href="about.html">about</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright grey darken-1">
       <div class="container">
-        <div class="row">
-          <div class="col l12 s12 center-align">
-              <a class="grey-text text-lighten-3 " href="about.html">about</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright grey darken-1">
-        <div class="container">
         © 2018 The Fighting Mongooses
-        </div>
       </div>
-    </footer>
+    </div>
+  </footer>
 
 
 
@@ -142,9 +160,9 @@
   <script src="js/initialize.js"></script>
 
   <script type="text/javascript">
-  $(document).ready(function(){
-$('select').formSelect();
-});
+    $(document).ready(function() {
+      $('select').formSelect();
+    });
   </script>
 
 

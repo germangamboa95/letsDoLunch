@@ -8,9 +8,6 @@ let guestLink;
 let err = (err) => {
   console.log(err);
 }
-navigator.geolocation.getCurrentPosition(function(position) {
- console.log(position);
-} ,err,{timeout:60000});
 
 document.addEventListener('submit', function(e){
     e.preventDefault();
@@ -66,3 +63,14 @@ document.addEventListener('submit', function(e){
 
 
 });
+
+
+function getCoordsFromNav() {
+  let  err = (err) => console.log(err);
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+   console.log(position);
+   $('#latitude').text(position.coords.latitude);
+   $('#longitude').text(position.coords.longitude);
+  } ,err,{timeout:60000});
+}
