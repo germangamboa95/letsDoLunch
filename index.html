@@ -45,26 +45,27 @@
 
         <form class="col s12 center">
           <div class="row">
-            <div class="input-field col s12">
+            <div id="address-lookup" class="input-field col s12">
               <input id="location" type="text" class="validate">
               <label for="location">What area would you like to have lunch in?</label>
             </div>
           </div>
 
 
-          <div id="longitude-el" class="input-field inline" style="display:none">
+
+          <div id="longitude-el" class="input-field" style="display:none">
             <input id="longitude" type="text" class="validate" >
-            <label for="longitude">Loading...</label>
+
             <span class="helper-text" data-error="wrong" data-success="right">longitude</span>
           </div>
 
 
-          <div id="latitude-el" class="input-field inline" style="display:none">
+          <div id="latitude-el" class="input-field" style="display:none">
             <input id="latitude" type="text" class="validate" >
-            <label for="latitude">Loading...</label>
+
             <span class="helper-text" data-error="wrong" data-success="right">latitude</span>
           </div>
-          <button class="btn waves-effect waves-light green accent-4" id="geoButton" type="button" name="action">Get GPS
+          <button style="display:none" class="btn waves-effect waves-light green accent-4" id="geoButton" type="button" name="action">Get GPS
           <i class="material-icons right">send</i>
           </button>
 
