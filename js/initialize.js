@@ -6,8 +6,11 @@ let initiatorLink;
 let guestLink;
 
 
+document.getElementById('geoButton').addEventListener('click', (e) => {
 
-getCoordsFromNav();
+  getCoordsFromNav();
+
+});
 document.addEventListener('submit', function(e){
     e.preventDefault();
 
@@ -18,9 +21,9 @@ document.addEventListener('submit', function(e){
     geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') { var lat; var long;
           console.log(results)
-            long = results[0].geometry.bounds.b.b;
-            lat = results[0].geometry.bounds.f.b;
 
+            long = results[0].geometry.location.lng()
+            lat = results[0].geometry.location.lat()
             let data = {
               email: email,
               location: {
@@ -43,7 +46,7 @@ document.addEventListener('submit', function(e){
             .then(data => {
               console.log(data);
               initiatorLink = "./Voting2.html?initiator=true&session="+data;
-              guestLink = "./Voting2.html?initiator=false&session="+data;
+              guestLink = "https://germangamboa95.github.io/letsDoLunch.io/Voting2.html?initiator=false&session="+data;
 
               console.log(guestLink);
               console.log(initiatorLink);
@@ -66,8 +69,9 @@ document.addEventListener('submit', function(e){
 
 function getCoordsFromNav() {
   let  err = (err) => console.log(err);
-
-  navigator.geolocation.getCurrentPosition(function(position) {
+  $('#latitude-el').show();
+  $('#longitude-el').show();
+   navigator.geolocation.getCurrentPosition(function(position) {
    console.log(position);
    let lat = position.coords.latitude;
    let lon = position.coords.longitude

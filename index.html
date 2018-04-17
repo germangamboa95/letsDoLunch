@@ -46,18 +46,21 @@
           </div>
 
 
-          <div class="input-field inline">
-            <input id="longitude" type="text" class="validate">
+          <div id="longitude-el" class="input-field inline" style="display:none">
+            <input id="longitude" type="text" class="validate" >
             <label for="longitude">Loading...</label>
             <span class="helper-text" data-error="wrong" data-success="right">longitude</span>
           </div>
 
 
-          <div class="input-field inline">
-            <input id="latitude" type="text" class="validate">
+          <div id="latitude-el" class="input-field inline" style="display:none">
+            <input id="latitude" type="text" class="validate" >
             <label for="latitude">Loading...</label>
             <span class="helper-text" data-error="wrong" data-success="right">latitude</span>
           </div>
+          <button class="btn waves-effect waves-light green accent-4" id="geoButton" type="button" name="action">Get GPS
+          <i class="material-icons right">send</i>
+          </button>
 
 
 
