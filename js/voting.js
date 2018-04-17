@@ -66,6 +66,7 @@ $(document).ready(function(){
                 cardImage= $("<img src='images/placeHolder.png' class='cardImg'>");
                 cardTitle= $("<span class='card-title'>");
                 titleString= locations[i].name;
+                console.log(titleString)
                 cardContent= $("<div class='card-content'>");
                 ratingOuter= $("<div class='stars-outer'>");
                 ratingInner= $("<div class='stars-inner'>");
@@ -104,6 +105,7 @@ $(document).ready(function(){
                         $(cardImage).remove();
                         $(cardImageDiv).append(cardImageReal);
 
+
                     }
                     else{
 
@@ -111,20 +113,26 @@ $(document).ready(function(){
 
                 }
 
+                addNames()
 
 
             }
             l=locations.length-1;
 
-            $(cardImageDiv).append(cardTitle);
-            $(cardTitle).append(titleString);
-            console.log(l);
-            firstCard=("#cardo"+l);
-            console.log(firstCard);
-            $(".option").hide();
-            $(firstCard).slideDown();
-            greenInit();
-            redInit();
+            function addNames(){
+                $(cardTitle).append(titleString);
+                $(cardImageDiv).append(cardTitle);
+            }
+            
+                console.log(l);
+                firstCard=("#cardo"+l);
+                console.log(firstCard);
+                $(".option").hide();
+                $(firstCard).slideDown();
+                greenInit();
+                redInit();
+    
+
 
     
         })
