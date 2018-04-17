@@ -1,18 +1,13 @@
 var geocoder = new google.maps.Geocoder();
-console.log(geocoder);
 
 $(".shareCard").hide();
 
 let initiatorLink;
 let guestLink;
-let err = (err) => {
-  console.log(err);
-}
 
 
 
-
-getCoordsFromNav()
+getCoordsFromNav();
 document.addEventListener('submit', function(e){
     e.preventDefault();
 
@@ -74,7 +69,9 @@ function getCoordsFromNav() {
 
   navigator.geolocation.getCurrentPosition(function(position) {
    console.log(position);
-   $('#latitude').text(position.coords.latitude);
-   $('#longitude').text(position.coords.longitude);
+   let lat = position.coords.latitude;
+   let lon = position.coords.longitude
+   $('#latitude').attr('value', lat);
+   $('#longitude').attr('value', lon);
   } ,err,{timeout:60000});
 }
