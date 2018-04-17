@@ -15,14 +15,16 @@ body{
  background-color: #eeeeee;
 }
 
-footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
+
 
 a{
     margin: 0px 0px 0px 0px;
 }
 
 
+.content {
+min-height: calc(100vh - 70px);
+}
+.page-footer {
+height: 50px;
+}
