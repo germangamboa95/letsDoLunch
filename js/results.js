@@ -28,6 +28,7 @@ $.ajax( {
         results = response;
 
 
+
         console.log("winner: ", winner);
 
         console.log(response);
@@ -106,7 +107,11 @@ function resultsOne() {
     // that show the votes (as a percentage) for each restaurant
     console.log(restaurantName);
     console.log(restaurantVotes);
-    createRes(restaurantName);
+    var numVoters = results.guest_qty;
+    numVoters = parseInt(numVoters);
+    createRes(restaurantName, numVoters);
+
+
 
     let x = Object.values(results.votes);
     //  Logic to display the current top or display the winner
@@ -141,8 +146,6 @@ function resultsOne() {
     // This section computes the percent of votes to show on progress bar
     for (var m = 0; m < restaurantVotes.length; m++) {
         console.log(results.guest_qty);
-        var numVoters = results.guest_qty;
-        numVoters = parseInt(numVoters);
         var temp = Math.round(restaurantVotes[m] / numVoters *100);
         console.log("the percent for restaurant " + m + " is " + temp);
         setWidth[m] = "width: " + temp +"%";
@@ -169,7 +172,7 @@ function resultsOne() {
 
 
 
-function createRes(data) {
+function createRes(data , numVoters) {
   /// Style the res card here!
   $('#resultsCol').append("<div id='1234' class='card'>");
   data.forEach((item, index) => {
