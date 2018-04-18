@@ -80,13 +80,12 @@ $(document).ready(function(){
                 $(card).append(cardImageDiv);
                 $(cardImageDiv).append(cardImage);
                 $(card).append(cardContent);
-                $(cardContent).append(ratingOuter);
-                $(ratingOuter).append(ratingInner);
+
                 $(cardContent).append(cardAddress);
                 $(card).append(cardAction);
                 $(cardAction).append(upVote);
                 $(cardAction).append(downVote);
-                $(".stars-inner").css("width", starPercentageRounded);
+
 
 
                 finalItem=locations[0].place_id;
@@ -113,9 +112,12 @@ $(document).ready(function(){
                     }
 
                 }
+                $(cardContent).append(ratingOuter);
+                $(ratingOuter).append(ratingInner);
 
                 $(cardImageDiv).append(cardTitle);
                 $(cardTitle).append(titleString);
+                $(".stars-inner").css("width", starPercentageRounded);
 
 
 
