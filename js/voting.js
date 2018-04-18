@@ -87,10 +87,13 @@ $(document).ready(function(){
                 $(cardAction).append(upVote);
                 $(cardAction).append(downVote);
                 $(".stars-inner").css("width", starPercentageRounded);
-                finalItem=locations[0].place_id;
-                
 
-                
+
+                finalItem=locations[0].place_id;
+
+
+
+
 
                 for (var j=0; j<images.length; j++){
 
@@ -111,13 +114,16 @@ $(document).ready(function(){
 
                 }
 
+                $(cardImageDiv).append(cardTitle);
+                $(cardTitle).append(titleString);
+
+
 
 
             }
             l=locations.length-1;
 
-            $(cardImageDiv).append(cardTitle);
-            $(cardTitle).append(titleString);
+
             console.log(l);
             firstCard=("#cardo"+l);
             console.log(firstCard);
@@ -126,9 +132,9 @@ $(document).ready(function(){
             greenInit();
             redInit();
 
-    
+
         })
-       
+
     })
 
 
@@ -137,7 +143,7 @@ $(document).ready(function(){
 function greenInit(){
 
   $(".green").on("click",function(){
-          
+
       var actionSection= $(this).parent();
       var card= $(actionSection).parent();
       var voteId= $(this).attr("id");
@@ -152,7 +158,7 @@ function greenInit(){
       $(card).slideUp();
       $(nextCardId).slideDown();
 
-      
+
       $.ajax({
         url:voteURL,
         method:"POST"
