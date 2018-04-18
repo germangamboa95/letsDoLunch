@@ -1,40 +1,43 @@
-.square{
-    background-color: #00c853;
+.square {
+  background-color: #00c853;
 }
 
-.voteBtn{
-    border-radius: 50%;
-    height: 80px;
+.voteBtn {
+  border-radius: 50%;
+  height: 80px;
 }
 
-.voteIcon{
-    vertical-align: middle;
-    margin: 13px 0px;
+.voteIcon {
+  vertical-align: middle;
+  margin: 13px 0px;
 }
 
-body{
- background-color: #eeeeee;
+body {
+  background-color: #eeeeee;
 }
 
-
-a{
-    margin: 0px 0px 0px 0px;
+a {
+  margin: 0px 0px 0px 0px;
 }
-
 
 .content {
-min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 70px);
 }
+
 .page-footer {
-height: 50px;
+  height: 50px;
 }
 
 .group:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  content: "";
+  display: table;
+  clear: both;
+}
 
-  .textBox{
-      line-height: 1.5;
-  }
+.textBox {
+  line-height: 1.5;
+}
+
+.card-center {
+  margin: 3em auto;
+}
