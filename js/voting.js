@@ -122,16 +122,11 @@ $(document).ready(function(){
                 $(".stars-inner").css("width", starPercentageRounded);
 
 
-                addNames()
 
 
             }
             l=locations.length-1;
 
-            function addNames(){
-                $(cardTitle).append(titleString);
-                $(cardImageDiv).append(cardTitle);
-            }
 
                 console.log(l);
                 firstCard=("#cardo"+l);
