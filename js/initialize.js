@@ -53,7 +53,7 @@ document.addEventListener('submit', function(e) {
       long = results[0].geometry.location.lng()
       lat = results[0].geometry.location.lat()
       let data = {
-        email: email,
+        email: null,
         location: {
           lat: lat,
           long: long
@@ -74,7 +74,7 @@ document.addEventListener('submit', function(e) {
         }).then(res => res.json())
         .then(data => {
           console.log(data);
-          initiatorLink = "./Voting2.html?initiator=true&session=" + data;
+          initiatorLink = "./Voting2.html?initiator=true&session=" + data+"&email="+email;
           guestLink = "https://germangamboa95.github.io/letsDoLunch.io/Voting2.html?initiator=false&session=" + data;
 
           console.log(guestLink);

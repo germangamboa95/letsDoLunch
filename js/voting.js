@@ -40,7 +40,7 @@ $(document).ready(function(){
     var ratingOuter;
     var ratingInner;
     var starsTotal=5;
-    var eMail = null;
+    var eMail = url.searchParams.get("email");
     var finalItem;
     var succsessCard=$("#successCard")
     var l;
@@ -141,7 +141,7 @@ $(document).ready(function(){
                 greenInit();
                 redInit();
 
-     
+
 
 
         })
