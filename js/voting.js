@@ -45,6 +45,7 @@ $(document).ready(function(){
     var succsessCard=$("#successCard")
     var l;
 
+    $("#resCol").append("<div class='progress'id='loader'><div class='indeterminate'></div></div>")
     $("#successCard").hide();
 
 
@@ -77,6 +78,7 @@ $(document).ready(function(){
                 var starPercentage = (locations[i].rating/starsTotal) * 100;
                 var starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
                 console.log(starPercentageRounded);
+                $("#loader").hide();
                 $("#resCol").prepend(card);
                 $(card).append(cardImageDiv);
                 $(cardImageDiv).append(cardImage);

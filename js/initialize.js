@@ -21,6 +21,8 @@ document.getElementById('geoButton').addEventListener('click', (e) => {
 });
 // Event listener for submitButton
 document.addEventListener('submit', function(e) {
+  $("#submitButton").hide()
+  $("#formAction").append("  <div class='progress'><div class='indeterminate'></div></div>")
   e.preventDefault();
   let address = $('#location').val();
   let email = $('#email').val();

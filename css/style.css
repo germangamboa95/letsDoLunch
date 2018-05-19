@@ -41,3 +41,6 @@ a {
 .card-center {
   margin: 3em auto;
 }
+.cardImg {
+  filter: brightness(75%);
+}

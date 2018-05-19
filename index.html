@@ -29,13 +29,10 @@
 
       <div class=" content container">
 
-        <div class="row ">
+        <div class="row mainrow">
           <div class="card group startForm">
-            <div class="card-content">
-              <div class="col s12 m6 offset-m3" id="resCol">
-                <div class="row section">
-                  <h6 class="align cente textBox">Welcome to Let's Do Lunch! Choose a location where you want to eat and how many friends are coming with you!</h6>
-                </div>
+            <div class="card-content startContent">
+                  <h6 class="align center-align textBox">Welcome to Let's Do Lunch! Choose a location where you want to eat and how many friends are coming with you!</h6>
 
                 <form class="col s12 center">
                   <div class="row">
@@ -72,8 +69,6 @@
                       <label for="email">Email</label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col s12">
                       <select id="num-guest">
             <option value="" disabled selected>How many friends are coming?</option>
             <option value="2">1</option>
@@ -81,22 +76,13 @@
             <option value="4"> 3</option>
             <option value="5"> 4</option>
             </select>
+            <div class="card-action" id="formAction">
+              <button class="btn waves-effect waves-light green accent-4" id="submitButton" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+                </button>
+            </div>
 
-                      <button class="btn waves-effect waves-light green accent-4" id="submitButton" type="submit" name="action">Submit
-              <i class="material-icons right">send</i>
-              </button>
-
-
-
-
-
-
-
-
-                    </div>
-                  </div>
                 </form>
-              </div>
             </div>
 
           </div>
@@ -123,7 +109,7 @@
               </div>
               <div class="card-action">
 
-                <button class="btn waves-effect waves-light green blue-grey-text accent-4" type="submit" name="action"><a style="color:white" id="voteBtn" href="">Go Vote Yourself!</a></button>
+                <button class="btn waves-effect waves-light green blue-grey-text accent-4" type="submit" name="action"><a style="color:white" id="voteBtn" href="">Go Vote Yourself!  <i class='voteIcon material-icons'>thumb_up</i></a></button>
               </div>
 
             </div>
