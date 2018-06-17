@@ -197,7 +197,7 @@ function topRes(data){
   `
   <div class="card medium mb-2">
     <div class="card-image">
-      <img src="${img}">
+      <img src="${img}" class='cardImg'>
       <span class="card-title">Top choice: <span id="locName">${data.name}</span></span>
       </div>
       <div class="card-content">

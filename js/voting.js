@@ -45,6 +45,10 @@ $(document).ready(function(){
     var succsessCard=$("#successCard")
     var l;
 
+<<<<<<< HEAD
+=======
+    $("#resCol").append("<div class='progress'id='loader'><div class='indeterminate'></div></div>")
+>>>>>>> 1c7d71bdabb9c711ff15a4dd0c6394bf70986ddb
     $("#successCard").hide();
 
 
@@ -77,6 +81,10 @@ $(document).ready(function(){
                 var starPercentage = (locations[i].rating/starsTotal) * 100;
                 var starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
                 console.log(starPercentageRounded);
+<<<<<<< HEAD
+=======
+                $("#loader").hide();
+>>>>>>> 1c7d71bdabb9c711ff15a4dd0c6394bf70986ddb
                 $("#resCol").prepend(card);
                 $(card).append(cardImageDiv);
                 $(cardImageDiv).append(cardImage);
