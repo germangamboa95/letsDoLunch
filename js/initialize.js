@@ -21,11 +21,8 @@ document.getElementById('geoButton').addEventListener('click', (e) => {
 });
 // Event listener for submitButton
 document.addEventListener('submit', function(e) {
-<<<<<<< HEAD
-=======
   $("#submitButton").hide()
   $("#formAction").append("  <div class='progress'><div class='indeterminate'></div></div>")
->>>>>>> 1c7d71bdabb9c711ff15a4dd0c6394bf70986ddb
   e.preventDefault();
   let address = $('#location').val();
   let email = $('#email').val();
@@ -80,7 +77,7 @@ document.addEventListener('submit', function(e) {
         .then(data => {
           console.log(data);
           initiatorLink = "./Voting2.html?initiator=true&session=" + data+"&email="+email;
-          guestLink = "https://germangamboa95.github.io/letsDoLunch.io/Voting2.html?initiator=false&session=" + data;
+          guestLink = "https://germangamboa95.github.io/letsDoLunch/Voting2.html?initiator=false&session=" + data;
 
           console.log(guestLink);
           console.log(initiatorLink);

@@ -4,7 +4,6 @@
 
 ## Well, let's do lunch is here for you!
 
-<<<<<<< HEAD
 With let's do lunch, you can find the best rated places in your area, and send a link to your friends where they can vote on where you want to do lunch.
 
 | App Images                                         |                        App Images                    |
@@ -30,7 +29,6 @@ Version 2.0 will include
 1.  An ability to search at a location "in the middle" between two users (or more)
 2.  Ability to find moview playing in local theaters using the fandango API
 3.  "Lets do bookclub" feature that helps book clubs pick a book or comic book to read via Amazon API
-=======
  With let's do lunch, you can find the best rated places in your area, and send a link to your friends where they can vote on where you want to do lunch.
 
 *screenshots of initiator and voting*
@@ -55,6 +53,5 @@ Version 2.0 will include
 1. An ability to search at a location "in the middle" between two users (or more)
 2. Ability to find moview playing in local theaters using the fandango API
 3. "Lets do bookclub" feature that helps book clubs pick a book or comic book to read via Amazon API
->>>>>>> 1c7d71bdabb9c711ff15a4dd0c6394bf70986ddb
 
 Start doing lunch and enjoy the fun!
