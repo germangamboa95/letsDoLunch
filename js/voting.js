@@ -21,11 +21,11 @@ $(document).ready(function() {
   }
 
   var locationsURL =
-    "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" +
+    "https://letshavelunchserver.herokuapp.com/api/" +
     sessionId +
     "/load_location_data";
   var imagesURL =
-    "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" +
+    "https://letshavelunchserver.herokuapp.com/api/" +
     sessionId +
     "/load_images";
   var card;
@@ -143,7 +143,7 @@ $(document).ready(function() {
       var card = $(actionSection).parent();
       var voteId = $(this).attr("id");
       var voteURL =
-        "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" +
+        "https://letshavelunchserver.herokuapp.com/api/" +
         sessionId +
         "/vote/" +
         voteId;
@@ -165,7 +165,7 @@ $(document).ready(function() {
       });
       if (voteId == finalItem) {
         var emailURL =
-          "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" +
+          "https://letshavelunchserver.herokuapp.com/api/" +
           sessionId +
           "/email_add";
 
@@ -206,7 +206,7 @@ $(document).ready(function() {
       $(card).slideUp();
       if (voteId == finalItem) {
         var emailURL =
-          "https://cors-anywhere.herokuapp.com/https://letshavelunchserver.herokuapp.com/api/" +
+          "https://letshavelunchserver.herokuapp.com/api/" +
           sessionId +
           "/email_add";
         console.log(eMail);
